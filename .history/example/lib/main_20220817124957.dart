@@ -1,0 +1,87 @@
+import 'package:button_menu/button_menu.dart';
+import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      themeMode: ThemeMode.dark,
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xff293462),
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: SizedBox(
+          width: double.infinity,
+          height: 400,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              MyButton(
+                // icon: AnimatedIcons.menu_close,
+
+                verticalSpacing: 8,
+                expandeIcon: Icons.close,
+                collapseIcon: Icons.menu,
+                iconSize: 56,
+                onItemPressed: (index) {
+                  print(index);
+                },
+                onPressed: (pressed) {
+                  print(pressed);
+                },
+                items: [
+                  ButtonItem(title: 'Account', icon: Iconsax.user),
+                  ButtonItem(title: 'Search', icon: Iconsax.search_normal),
+                  ButtonItem(title: 'Search', icon: Iconsax.search_normal),
+                  ButtonItem(title: 'Search', icon: Iconsax.search_normal),
+                  ButtonItem(title: 'Chat', icon: Iconsax.message_2),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
